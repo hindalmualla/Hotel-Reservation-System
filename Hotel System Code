@@ -1,0 +1,471 @@
+from enum import Enum
+
+class RoomType(Enum): #boolean statement for the room type
+    """class for room types for guest's reservation"""
+    JUNIOR_SUITE = "Junior Suite"
+    DELUXE_SUITE = "Deluxe Suite"
+    SUPERIOR_ROOM = "Superior Room"
+    DELUXE_GUESTROOM = "Deluxe Guestroom"
+    GUEST_ROOM = "Guest Room"
+
+class BedType(Enum): #boolean statement for the bed type
+    """class for bed types for guest's reservation"""
+    KING = "King"
+    TWIN = "Twin"
+    QUEEN = "Queen"
+
+class AmenityType(Enum): #boolean statement for the amenity
+    """class for amenity for guest's reservation"""
+    FREE_INTERNET = "Free Internet"
+    POOL = "Pool"
+    GYM = "Gym"
+    PARKING = "Parking"
+    SPA_SERVICE = "Full Service Spa"
+    BREAKFAST = "Breakfast"
+
+# Guest Class
+class Guest:
+    """class for Guests in Online Hotel Reservation"""
+
+    # constructor to define the attributes
+    def __init__(self, guestID, name, email, phonenum, password):
+        self.__guestID = guestID
+        self.__name = name
+        self.__email = email
+        self.__phonenum = phonenum
+        self.__password = password
+
+    # Setter and getter methods for each attribute
+    def get_guestID(self):
+        return self.__guestID
+
+    def set_guestID(self, guestID):
+        self.__guestID = guestID
+
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
+        self.__name = name
+
+    def get_email(self):
+        return self.__email
+
+    def set_email(self, email):
+        self.__email = email
+
+    def get_phonenum(self):
+        return self.__phonenum
+
+    def set_phonenum(self, phonenum):
+        self.__phonenum = phonenum
+
+    def get_password(self):
+        return self.__password
+
+    def set_password(self, password):
+        self.__password = password
+
+    # __str__ method for the object
+    def __str__(self):
+        return f"Guest[ID: {self.__guestID}, Name: {self.__name}, Email: {self.__email}, Phone: {self.__phonenum}]"
+
+    # Function headers with pass statements
+    def loginVerification(self):
+        # Verify guest's login information
+        pass
+
+    def reservationDisplay(self):
+        # Displays the guest's reservation booking details
+        pass
+
+    def detailUpdated(self):
+        # Updates guest's information details
+        pass
+
+# Room class
+class Room:
+    """class for Rooms in Online Hotel Reservation"""
+
+    # constructor to define the attributes
+    def __init__(self, roomID, roomType, price, availabilityStatus, roomCapacity, bedType):
+        self.__roomID = roomID
+        self.__roomType = roomType
+        self.__price = price
+        self.__availabilityStatus = availabilityStatus
+        self.__roomCapacity = roomCapacity
+        self.__bedType = bedType
+        self.__description = ""
+
+    # Getter and Setter methods
+    def set_roomID(self, roomID):
+        self.__roomID = roomID
+
+    def get_roomID(self):
+        return self.__roomID
+
+    def set_roomType(self, roomType):
+        self.__roomType = roomType
+
+    def get_roomType(self):
+        return self.__roomType
+
+    def set_price(self, price):
+        self.__price = price
+
+    def get_price(self):
+        return self.__price
+
+    def set_availabilityStatus(self, availabilityStatus):
+        self.__availabilityStatus = availabilityStatus
+
+    def get_availabilityStatus(self):
+        return self.__availabilityStatus
+
+    def set_roomCapacity(self, roomCapacity):
+        self.__roomCapacity = roomCapacity
+
+    def get_roomCapacity(self):
+        return self.__roomCapacity
+
+    def set_bedType(self, bedType):
+        self.__bedType = bedType
+
+    def get_bedType(self):
+        return self.__bedType
+
+    # __str__ method for object
+    def __str__(self):
+        return f"Room[ID: {self.__roomID}, Type: {self.__roomType.value}, Price: {self.__price}, Available: {self.__availabilityStatus}]"
+
+    # Methods for specific room types
+    def set_junior_suite(self):
+        self.__roomType(RoomType.JUNIOR_SUITE)
+        self.__price = 800.0
+        self.__roomCapacity = 3
+        self.__bedType((BedType.QUEEN))
+        self.__description = "A large and spacious junior suite with a separate living area."
+
+    def set_deluxe_suite(self):
+        self.set_roomType(RoomType.DELUXE_SUITE)
+        self.__price = 1200.0
+        self.__roomCapacity = 4
+        self.set_bedType(BedType.KING)
+        self.__description = "Enjoy our luxurious deluxe suite with premium amenities."
+
+    def set_superior_room(self):
+        self.set_roomType(RoomType.SUPERIOR_ROOM)
+        self.__price = 700.0
+        self.__roomCapacity = 2
+        self.set_bedType(BedType.QUEEN)
+        self.__description = "A superior room with great comfort."
+
+    def set_deluxe_guestroom(self):
+        self.set_roomType(RoomType.DELUXE_GUESTROOM)
+        self.__price = 750.0
+        self.__roomCapacity = 2
+        self.set_bedType(BedType.KING)
+        self.__description = "A deluxe guestroom with extra space and premium bedding."
+
+    def set_guest_room(self):
+        self.set_roomType(RoomType.GUEST_ROOM)
+        self.__price = 500.0
+        self.__roomCapacity = 2
+        self.set_bedType(BedType.TWIN)
+        self.__description = "A comfortable guest room suitable."
+
+
+    # Methods for specific bed types
+    def set_king_bed(self):
+        self.set_bedType(BedType.KING)
+
+    def set_twin_beds(self):
+        self.set_bedType(BedType.TWIN)
+
+    def set_queen_bed(self):
+        self.set_bedType(BedType.QUEEN)
+
+# Reservation class
+class Reservation:
+    """class for Reservation in Online Hotel Reservation"""
+
+    # constructor to define the attributes
+    def __init__(self, reservationID, checkInDate, numGuests, specialRequests, status):
+        self.__reservationID = reservationID
+        self.__checkInDate = checkInDate
+        self.__numGuests = numGuests
+        self.__specialRequests = specialRequests
+        self.__status = status
+
+    # Getter and Setter methods
+    def set_reservationID(self, reservationID):
+        self.__reservationID = reservationID
+
+    def get_reservationID(self):
+        return self.__reservationID
+
+    def set_checkInDate(self, checkInDate):
+        self.__checkInDate = checkInDate
+
+    def get_checkInDate(self):
+        return self.__checkInDate
+
+    def set_numGuests(self, numGuests):
+        self.__numGuests = numGuests
+
+    def get_numGuests(self):
+        return self.__numGuests
+
+    def set_specialRequests(self, specialRequests):
+        self.__specialRequests = specialRequests
+
+    def get_specialRequests(self):
+        return self.__specialRequests
+
+    def set_status(self, status):
+        self.__status = status
+
+    def get_status(self):
+        return self.__status
+
+    # __str__ method for object
+    def __str__(self):
+        return f"Reservation[ID: {self.__reservationID}, Guests: {self.__numGuests}, Status: {self.__status}]"
+
+    # Function headers with pass statements
+    def reserveconfirm(self):  # The guest's reservation confirmation
+        pass
+
+    def Reservenew(self):  # Create a new reservation for the guest
+        pass
+
+    def Reservemodify(self):  # Modifying the existing reservation made by the guest
+        pass
+
+    def cancelreserve(self):  # Cancels a reservation
+        pass
+
+
+# Payment class
+class Payment:
+    """class for Payment in Online Hotel Reservation"""
+
+    # constructor to define the attributes
+    def __init__(self, paymentID, reservationID, amount, paymentDate, paymentStatus):
+        self.__paymentID = paymentID
+        self.__reservationID = reservationID
+        self.__amount = amount
+        self.__paymentDate = paymentDate
+        self.__paymentStatus = paymentStatus
+
+    # Getter and Setter methods
+    def set_paymentID(self, paymentID):
+        self.__paymentID = paymentID
+
+    def get_paymentID(self):
+        return self.__paymentID
+
+    def set_reservationID(self, reservationID):
+        self.__reservationID = reservationID
+
+    def get_reservationID(self):
+        return self.__reservationID
+
+    def set_amount(self, amount):
+        self.__amount = amount
+
+    def get_amount(self):
+        return self.__amount
+
+    def set_paymentDate(self, paymentDate):
+        self.__paymentDate = paymentDate
+
+    def get_paymentDate(self):
+        return self.__paymentDate
+
+    def set_paymentStatus(self, paymentStatus):
+        self.__paymentStatus = paymentStatus
+
+    def get_paymentStatus(self):
+        return self.__paymentStatus
+
+    # Function headers with pass statements
+    def paymentprocess(self):  # Processes the guest's payment for their reservation
+        pass
+
+    def refund(self):  # Refund the guest's payment for their booking cancellation
+        pass
+
+    # __str__ method for the object
+    def __str__(self):
+        return f"Payment[ID: {self.__paymentID}, Amount: {self.__amount}, Status: {self.__paymentStatus}]"
+
+# Amenities Class
+class Amenities:
+    """Class for Amenities in Online Hotel Reservation"""
+
+    # constructor to define the attributes
+    def __init__(self, amenityID, amenityName, availability, cost, description):
+        self.__amenityID = amenityID
+        self.__amenityName = amenityName
+        self.__availability = availability
+        self.__cost = cost
+        self.__description = description
+
+    # Getter and Setter methods
+    def set_amenityID(self, amenityID):
+        self.__amenityID = amenityID
+
+    def get_amenityID(self):
+        return self.__amenityID
+
+    def set_amenityName(self, amenityName):
+        self.__amenityName = amenityName
+
+    def get_amenityName(self):
+        return self.__amenityName
+
+    def set_availability(self, availability):
+        self.__availability = availability
+
+    def get_availability(self):
+        return self.__availability
+
+    def set_cost(self, cost):
+        self.__cost = cost
+
+    def get_cost(self):
+        return self.__cost
+
+    def set_description(self, description):
+        self.__description = description
+
+    def get_description(self):
+        return self.__description
+
+    # __str__ method for easy object representation
+    def __str__(self):
+        return f"Amenities[ID: {self.__amenityID}, Name: {self.__amenityName}, Cost: {self.__cost}]"
+
+    #methods for specific amentity types
+    def free_internet(self): #free wifi
+        self.set_amenityName(AmenityType.FREE_INTERNET)
+        self.__availability = True
+        self.__cost = 0.0 #free
+        self.__description = "Complimentary internet during your stay at our hotel."
+
+    #Hotel having a pool access for guests
+    def pool(self):
+        self.set_amenityName(AmenityType.POOL)
+        self.__availability = True
+        self.__cost = 0.0  #free for guests
+        self.__description = "Outdoor swimming pool available for guests."
+
+    #gym hotel
+    def gym(self):
+        self.set_amenityName(AmenityType.GYM)
+        self.__availability = True
+        self.__cost = 0.0 # free for guests
+        self.__description = "24/7 access to the hotel gym for guests."
+
+    #hotel parking
+    def parking(self):
+        self.set_amenityName(AmenityType.PARKING)
+        self.__availability = True
+        self.__cost = 50.0  #cost per day
+        self.__description = "Parking for guests."
+
+    #spa service
+    def spa_service(self):
+        self.set_amenityName(AmenityType.SPA_SERVICE.value)
+        self.__availability = True
+        self.__cost = 100.0  # per service
+        self.__description = "Enjoy our spa services which includes massages, facials, and more."
+
+    def breakfast(self, free = 50.0):
+        self.set_amenityName(AmenityType.BREAKFAST)
+        self.__availability = True
+        self.__cost = fee  # Fee can be adjusted
+        self.__description = f"Complimentary hot breakfast available for an additional fee starting from {fee} EUR."
+
+
+# Hotel Class
+class Hotel:
+    """Class for Hotel in Online Hotel Reservation"""
+
+    # constructor to define the attributes
+    def __init__(self, hotelID, address, city, country, rating, contactNumber):
+        self.__hotelID = hotelID
+        self.__address = address
+        self.__city = city
+        self.__country = country
+        self.__rating = rating
+        self.__contactNumber = contactNumber
+
+    # Getter and Setter methods
+    def set_hotelID(self, hotelID):
+        self.__hotelID = hotelID
+
+    def get_hotelID(self):
+        return self.__hotelID
+
+    def set_address(self, address):
+        self.__address = address
+
+    def get_address(self):
+        return self.__address
+
+    def set_city(self, city):
+        self.__city = city
+
+    def get_city(self):
+        return self.__city
+
+    def set_country(self, country):
+        self.__country = country
+
+    def get_country(self):
+        return self.__country
+
+    def set_rating(self, rating):
+        self.__rating = rating
+
+    def get_rating(self):
+        return self.__rating
+
+    def set_contactNumber(self, contactNumber):
+        self.__contactNumber = contactNumber
+
+    def get_contactNumber(self):
+        return self.__contactNumber
+
+    # __str__ method for easy object representation
+    def __str__(self):
+        return f"Hotel[ID: {self.__hotelID}, Address: {self.__address}, City: {self.__city}, Country: {self.__country}, Rating: {self.__rating}]"
+
+# Object for Guest
+guest1 = Guest(guestID=101, name="Ahmed Abdulla", email="almoallaa@gmail.com", phonenum="0507895455", password="Ahmed1234")
+print(guest1)
+
+# Object for Room
+room1 = Room(roomID=501, roomType="", price=0.0, availabilityStatus=True, roomCapacity=0, bedType="")
+room1.set_deluxe_suite()  # Setting room as a Deluxe Suite
+room1.set_king_bed()      # Setting the bed type to King
+print(room1)
+
+#object for reservation
+reservation1 = Reservation(reservationID=2133, checkInDate= "30-09-2024", numGuests=3, specialRequests="Replace feather pillows and late check in", status= "confirmed")
+print(reservation1)
+
+#object for payment
+payment1 = Payment(paymentID=5400, reservationID=2133, amount=1200.0, paymentDate="29-09-2024", paymentStatus="Completed")
+print(payment1)
+
+# Object for Amenities
+amenity1 = Amenities(amenityID=5001, amenityName="", availability=False, cost=0.0, description="")
+amenity1.spa_service()  # Setting the amenity as Spa Service
+print(amenity1)
+
+# Object for Hotel
+hotel1 = Hotel(hotelID=1, address="Bayerstraße 41", city="Münich", country="Germany", rating=4, contactNumber="+498924220")
+print(hotel1)
